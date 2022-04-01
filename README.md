@@ -17,15 +17,19 @@ $ chmod 640 postgres_certs/server.key
 $ openssl req -new -key postgres_certs/server.key -days 3650 -out postgres_certs/server.crt -x509
 ```
 
+# Initialize terraform.
+- this command will take a while for it will try to startup the postgresql container first.
 ## 
 ```shell
 $ docker-compose run --rm iac init
 ```
-
-
+## To rebuild and only start the postgresql container.
+```shell
+docker-compose up --build -d terraform_backend
+```
 # References:
-- ### https://www.postgresql.org/docs/9.5/ssl-tcp.html
-- ### https://ubiq.co/database-blog/how-to-enable-ssl-in-postgresql/
-- ### https://superuser.com/questions/556493/permissions-for-ssl-key
-- ### https://www.terraform.io/language/settings/backends/pg
-- ### https://learn.hashicorp.com/tutorials/terraform/docker-build?in=terraform/docker-get-started
+- https://www.postgresql.org/docs/9.5/ssl-tcp.html
+- https://ubiq.co/database-blog/how-to-enable-ssl-in-postgresql/
+- https://superuser.com/questions/556493/permissions-for-ssl-key
+- https://www.terraform.io/language/settings/backends/pg
+- https://learn.hashicorp.com/tutorials/terraform/docker-build?in=terraform/docker-get-started
