@@ -23,10 +23,25 @@ openssl req -new -key postgres_certs/server.key -days 3650 -out postgres_certs/s
 ```shell
 docker-compose run --rm iac init
 ```
+# Vew & Apply terraform infrastructure.
+```shell
+docker-compose run --rm iac plan
+docker-compose run --rm iac apply --auto-approve
+```
 ## To rebuild and only start the postgresql container.
 ```shell
 docker-compose up --build -d terraform_backend
 ```
+## View riunning contaienrs.
+```
+docker ps --format "table {{.Names}}\t{{.Mounts}}\t{{.Ports}}\t{{.Image}}"
+```
+
+## Destroy terraform infrastructure.
+```
+docker-compose run --rm iac destroy --auto-approve
+```
+
 # References:
 - https://www.postgresql.org/docs/9.5/ssl-tcp.html
 - https://ubiq.co/database-blog/how-to-enable-ssl-in-postgresql/
